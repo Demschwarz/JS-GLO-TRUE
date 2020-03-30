@@ -1,0 +1,14 @@
+let money = 50000;
+let income = "Freelance";
+let addExpences = "Internet connection, Water, Light";
+let deposit = true;
+let mission = 1000000;
+let period = 36;
+// alert('hi');
+// console.log(money);
+// console.log(2);
+console.log(typeof(money), typeof(income), typeof(deposit));
+console.log(addExpences.length);
+console.log(addExpences.toLowerCase().split(', '));
+let budgetDay = money / 30;
+console.log(budgetDay);
