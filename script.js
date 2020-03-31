@@ -1,20 +1,29 @@
 'use strict'
 let mission = 1000000;
-let money = Number(prompt('Ваш месячный доход?', 30000));
-console.log(typeof(money));
+let money = '10000';
+let income = '50000';
+let deposit = true;
+console.log(typeof(money), typeof(income), typeof(deposit));
+// console.log(typeof(money));
 // let income = "Freelance";
-let addExpences = prompt('Перечислите возможные расходы за рассчитываемый период через запятую');
-let deposit = Boolean(prompt('Есть ли у вас депозит в банке?'))
-console.log((1 == 1) * deposit, typeof(deposit));
+let period = 6;
+let addExpences = ['Интернет', 'Коммуналка', 'Пропитание', 'Курсы по js'];
+console.log(addExpences.length);
+console.log('Период равен ' + period + ' месяцев');
+console.log('Цель - заработать ' + mission + ' рублей');
+money = Number(prompt('Ваш месячный доход?', 36000));
+addExpences = prompt('Перечислите возможные расходы за рассчитываемый период через запятую');
+console.log(addExpences.toLowerCase().split(', '));
+deposit = Boolean(prompt('Есть ли у вас депозит в банке?'));
 let expences1 = prompt('Введите обязательную статью расходов');
 let amount1 = Number(prompt('Во сколько это обойдется?'));
 let expences2 = prompt('Введите обязательную статью расходов');
 let amount2 = Number(prompt('Во сколько это обойдется?'));
 let budgetMonth = money - amount1 - amount2;
-console.log(budgetMonth);
-console.log(Math.ceil(mission / budgetMonth));
+console.log('Бюджет на месяц ' + budgetMonth);
+console.log('Цель будет достигнута за ' + Math.ceil(mission / budgetMonth) + ' месяцев');
 let budgetDay = budgetMonth / 30;
-console.log(Math.round(budgetDay));
+console.log('Бюджет на день: ' + Math.round(budgetDay));
 if (budgetDay >= 1200){
     console.log('У вас высокий уровень дохода');
 }
@@ -35,7 +44,6 @@ else {
 // // // alert('hi');
 // // // console.log(money);
 // // // console.log(2);
-// console.log(typeof(money), typeof(income), typeof(deposit));
 // console.log(addExpences.length);
 // console.log(addExpences.toLowerCase().split(', '));
 // console.log(budgetDay);
