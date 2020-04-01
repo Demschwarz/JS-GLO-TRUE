@@ -11,7 +11,7 @@ let addExpences = prompt('Перечислите возможные расход
 console.log(addExpences.toLowerCase().split(', '));
 console.log(addExpences.length);
 
-let deposit = !!(prompt('Есть ли у вас депозит в банке?'));
+let deposit = confirm('Есть ли у вас депозит в банке?');
 
 console.log(typeof(money), typeof(income), typeof(deposit));
 
