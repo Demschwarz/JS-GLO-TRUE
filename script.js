@@ -20,9 +20,23 @@ let appData = {
     expences: {},
     addExpences: [],
     deposit: false,
+    percentDeposit: 0,
+    moneyDeposit: 0,
     mission: 1000000,
     period: 3,
     asking: function() {
+        if (confirm('Есть ли у вас дополнительный источник заработка?')) {
+            let itemIncome = prompt('Какой у вас дополнительный заработок?');
+            while (!((typeof(itemIncome)) == 'string')) {
+                itemIncome = prompt('Какой у вас дополнительный заработок? Введите строку');
+            }
+            let cashIncome = +prompt('Сколько в месяц вы на этом зарабатываете?');
+            while (!isNum(cashIncome)) { // проверка на число
+                cashIncome = +prompt('Сколько в месяц вы на этом зарабатываете? Введите число');
+            }
+            appData.income[itemIncome] = cashIncome;
+        }
+
         let addExpences = prompt('Перечислите возможные расходы за рассчитываемый период через запятую');
         appData.addExpences = addExpences.toLowerCase().split(', ');
         appData.deposit = confirm('Есть ли у вас депозит в банке?');
@@ -50,7 +64,6 @@ let appData = {
         let a = money - appData.getExpensesMonth();
         appData.budgetMonth = a;
         appData.budgetDay = Math.round(appData.budgetMonth / 30);
-        // console.log('Бюджет на день: ', appData.budgetDay);
         return a;
     },
     getTargetMonth: function() {
@@ -74,6 +87,25 @@ let appData = {
         else {
             console.log('К сожалению у вас уровень дохода ниже среднего');
         }
+    },
+    getInfoDeposit: function() {
+        if (appData.deposit) {
+            let prom1;
+            prom1 = +prompt('Какой годовой процент?', 10);
+            while (!isNum(prom1)) { // проверка на число
+                prom1 = +prompt('Какой годовой процент? Введите число');
+            }
+            appData.percentDeposit = prom1;
+            prom1 = +prompt('Какая сумма заложена?', 10000);
+            while (!isNum(prom1)) { // проверка на число
+                prom1 = +prompt('Какой годовой процент? Введите число');
+            }
+            appData.moneyDeposit = prom1;
+        }
+    },
+
+    calcSavedMoney: function() {
+        return appData.budgetMonth * appData.period;
     }
 }
 
@@ -93,4 +125,16 @@ for (let key in appData) {
         console.log(key + ' ' + appData[key]);
     }
 }
+
+// урок 8
+
+let str = '';
+for (let key of appData.addExpences) {
+    if (key != appData.addExpences[0]) {
+        str += ', ';
+    }
+    str += key[0].toUpperCase() + key.slice(1);
+}
+console.log('str: ', str);
+
 
