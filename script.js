@@ -1,15 +1,28 @@
-'use strict'
+'use strict';
 
 let isNum = function(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
-}
+};
 
 let money,
     start = function() {
     do {
         money = +prompt('Ваш месячный доход?');
-    } while (!isNum(money))
+    } while (!isNum(money));
+};
+
+let isStr = function(n) {
+    let numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    for (let key of n) {
+        for (let key1 of numbers) {
+            if (key == key1)
+            return false;
+        }
+    }
+    return true;
 }
+
+
 
 start();
 
@@ -27,13 +40,13 @@ let appData = {
     asking: function() {
         if (confirm('Есть ли у вас дополнительный источник заработка?')) {
             let itemIncome = prompt('Какой у вас дополнительный заработок?');
-            while (!((typeof(itemIncome)) == 'string')) {
+            while (!isStr(itemIncome)) {
                 itemIncome = prompt('Какой у вас дополнительный заработок? Введите строку');
-            }
+            };
             let cashIncome = +prompt('Сколько в месяц вы на этом зарабатываете?');
             while (!isNum(cashIncome)) { // проверка на число
                 cashIncome = +prompt('Сколько в месяц вы на этом зарабатываете? Введите число');
-            }
+            };
             appData.income[itemIncome] = cashIncome;
         }
 
@@ -42,6 +55,9 @@ let appData = {
         appData.deposit = confirm('Есть ли у вас депозит в банке?');
         for (let i = 0; i != 2; i++) {
             let a = prompt('Введите обязательную статью расходов');
+            while (!isStr(a)) {
+                a = prompt('Какой у вас дополнительный заработок? Введите строку');
+            };
             let b = +prompt('Во сколько это обойдётся?');
             while (!isNum(b)) { // проверка на число
                 b = +prompt('Во сколько это обойдётся? Введите число');
