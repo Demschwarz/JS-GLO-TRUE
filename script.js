@@ -68,8 +68,9 @@ let appData = {
     },
     getTargetMonth: function() {
         let temp = Math.ceil(appData.mission / appData.getBudget());
-        if (temp <= 0) {
-            return 'Цель не будет достигнута';
+        if ((temp <= 0) || (temp == Infinity)) {
+            console.log( 'Цель не будет достигнута');
+            return;
         }
         console.log('Цель будет достигнута за ' + temp + ' месяцев');
     },
