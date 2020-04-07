@@ -56,7 +56,7 @@ let appData = {
         for (let i = 0; i != 2; i++) {
             let a = prompt('Введите обязательную статью расходов');
             while (!isStr(a)) {
-                a = prompt('Какой у вас дополнительный заработок? Введите строку');
+                a = prompt('Введите обязательную статью расходов. Введите строку');
             };
             let b = +prompt('Во сколько это обойдётся?');
             while (!isNum(b)) { // проверка на число
@@ -84,8 +84,9 @@ let appData = {
     },
     getTargetMonth: function() {
         let temp = Math.ceil(appData.mission / appData.getBudget());
-        if (temp <= 0) {
-            return 'Цель не будет достигнута';
+        if ((temp <= 0) || (temp == Infinity)) {
+            console.log('Цель не будет достигнута');
+            return;
         }
         console.log('Цель будет достигнута за ' + temp + ' месяцев');
     },
