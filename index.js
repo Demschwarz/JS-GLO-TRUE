@@ -230,11 +230,15 @@ let appData = {
     }
 }
 
+
+startId.setAttribute('disabled', 'true');
 leftInputFirst.addEventListener('input', function() { // запрещение нажатия на кнопку
     if (leftInputFirst.value !== '') {
+        startId.removeAttribute('disabled');
         startId.addEventListener('click', appData.start);
     } else {
-        startId.addEventListener('click');
+        startId.setAttribute('disabled', 'true');
+        startId.addEventListener('click', function() {});
     }
 });
 buttonPlusSecond.addEventListener('click', appData.addExpensesBlock);
