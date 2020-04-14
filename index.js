@@ -215,8 +215,7 @@ let appData = {
         document.querySelectorAll('.clone').forEach(function(item) {item.remove()});
         incomeItems = data.querySelectorAll('.income-items');
         expensesItems = document.querySelectorAll('.expenses-items');
-        document.querySelector('.deposit').replaceWith(depositClone);
-        // document.querySelector('.deposit-checkmark::after').remove();
+        checkbox.checked = false;
         document.querySelectorAll('input[type=text]').forEach(function(item) {item.removeAttribute('disabled')});
         startId.setAttribute('disabled', 'true');
         document.querySelector('.period-select').value = 1;
