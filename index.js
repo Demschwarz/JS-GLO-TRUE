@@ -198,17 +198,17 @@ let appData = {
         inputFifth.value = this.calcSavedMoney();
     },
     reset: function() {
-        appData.income = {};
-        appData.addIncome = [];
-        appData.expences = {};
-        appData.addExpences = [];
-        appData.deposit = false;
-        appData.percentDeposit = 0;
-        appData.moneyDeposit = 0;
-        appData.budget = 0;
-        appData.budgetDay = 0;
-        appData.budgetMonth = 0;
-        appData.expensesMonth = 0;
+        this.income = {};
+        this.addIncome = [];
+        this.expences = {};
+        this.addExpences = [];
+        this.deposit = false;
+        this.percentDeposit = 0;
+        this.moneyDeposit = 0;
+        this.budget = 0;
+        this.budgetDay = 0;
+        this.budgetMonth = 0;
+        this.expensesMonth = 0;
         document.querySelectorAll('input[type=text').forEach(function(item) {item.value = ''});
         buttonPlusFirst.style.display = 'initial';
         buttonPlusSecond.style.display = 'initial';
@@ -226,7 +226,7 @@ let appData = {
 
 
 let startTrue = appData.start.bind(appData); // привязка контекста к объекту appData
-
+let resetTrue = appData.reset.bind(appData);
 
 
 
@@ -245,7 +245,7 @@ leftInputFirst.addEventListener('input', function() { // запрещение н
         }});
     }
 });
-document.querySelector('#cancel').addEventListener('click', appData.reset);
+document.querySelector('#cancel').addEventListener('click', resetTrue);
 buttonPlusSecond.addEventListener('click', appData.addExpensesBlock);
 buttonPlusFirst.addEventListener('click', appData.addIncomeBlock);
 document.querySelector('.period-select').addEventListener('input', function() {
