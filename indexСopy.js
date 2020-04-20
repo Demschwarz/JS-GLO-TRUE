@@ -214,6 +214,7 @@ class AppData{
         startId.setAttribute('disabled', 'true');
         document.querySelector('.period-select').value = 1;
         document.querySelector('.period-amount').textContent = '1';
+        this.depositHandler();
     }
     
     depositHandler() {
@@ -225,6 +226,7 @@ class AppData{
         } else {
             depositBank.style.display = 'none';
             depositAmount.style.display = 'none';
+            depositPercent.style.display = 'none';
             depositBank.value = '';
             depositAmount.value = '';
             this.deposit = false;
@@ -234,19 +236,10 @@ class AppData{
     
     getInfoDeposit() { // этот метод надо доделать
         if (this.deposit) {
-            if (typeof(+depositPercent.value) === 'number'){
-                alert('Введите корректное значение в поле проценты');
-                
-            } else {
-                if (+depositPercent.value < 0 || +depositPercent.value > 100) {
-                    alert('Введите корректное значение в поле проценты');
-            } else{
                 this.percentDeposit = depositPercent.value;
                 this.moneyDeposit = depositAmount.value;
-            }
         }
         }
-    }
     
     changePercent() {
         let valueSelect = this.value;
@@ -256,7 +249,6 @@ class AppData{
             this.addEventListener('change', function() {
                 valueSelect = this.value;
                 if (valueSelect !== 'other') {
-                    depositPercent.value = '';
                     depositPercent.style.visibility = 'hidden';
                 } else {
                     depositPercent.style.visibility = 'visible';
