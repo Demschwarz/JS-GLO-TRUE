@@ -246,6 +246,7 @@ class AppData{
         if (valueSelect === 'other') {
             depositPercent.style.display = 'inline-block';
             depositPercent.style.visibility = 'visible';
+            depositPercent.value = '';
             this.addEventListener('change', function() {
                 valueSelect = this.value;
                 if (valueSelect !== 'other') {
@@ -293,6 +294,24 @@ class AppData{
     });
 
     depositCheck.addEventListener('change', this.depositHandler.bind(this));
+    
+    depositPercent.addEventListener('change', () => { // новый обработчик событий
+        if (isNaN(parseFloat(depositPercent.value)) && (depositPercent.value !== "")) {
+            alert('Введите корректное значение процента');
+            if (!startId.hasAttribute('disabled')) {
+                startId.setAttribute('disabled', 'true');
+            }
+        } else {
+            if ((parseFloat(depositPercent.value) < 0 || parseFloat(depositPercent.value ) > 100) && (depositPercent.value != '')) {
+                alert('Введите корректное значение процента');
+                if (!startId.hasAttribute('disabled')) {
+                    startId.setAttribute('disabled', 'true');
+                }
+            } else {
+                startId.removeAttribute('disabled');
+            }
+        }
+    })
     }
 }
 
