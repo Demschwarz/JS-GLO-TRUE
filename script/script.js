@@ -56,21 +56,24 @@ window.addEventListener('DOMContentLoaded', function() {
         const handlerMenu = () => {
             // menu.classList.toggle('active-menu');
 
-            if(!menu.style.transform || menu.style.transform === 'translate(-100%') {
-                menu.style.transform = 'translate(0)';
-                const way = document.body.offsetWidth - menu.clientWidth;
-                const start = Date.now();
-                const smth = setInterval(() => {
-                const timePassed = Date.now() - start;
-                if (timePassed >= way) {
-                    clearInterval(smth);
-                    return;
+            if (screen.width >= 768) {
+                if(!menu.style.transform || menu.style.transform === 'translate(-100%)') {
+                    menu.style.transform = 'translate(0)';
+                    const way = document.body.offsetWidth - menu.clientWidth;
+                    const start = Date.now();
+                    const smth = setInterval(() => {
+                    const timePassed = Date.now() - start;
+                    if (timePassed >= way) {
+                        clearInterval(smth);
+                        return;
+                    } else {
+                        menu.style.left = timePassed + 'px';
+                    }
+                }, 20);
                 } else {
-                    menu.style.left = timePassed + 'px';
+                    menu.style.left = 0;
+                    menu.style.transform = 'translate(-100%)';
                 }
-            }, 20);
-            } else {
-                menu.style.transform = 'translate(-100%)';
             }
         }
         btnMenu.addEventListener('click', handlerMenu);
