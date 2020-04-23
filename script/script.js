@@ -54,27 +54,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
 
         const handlerMenu = () => {
-            // menu.classList.toggle('active-menu');
-
-            if (screen.width >= 768) {
-                if(!menu.style.transform || menu.style.transform === 'translate(-100%)') {
-                    menu.style.transform = 'translate(0)';
-                    const way = document.body.offsetWidth - menu.clientWidth;
-                    const start = Date.now();
-                    const smth = setInterval(() => {
-                    const timePassed = Date.now() - start;
-                    if (timePassed >= way) {
-                        clearInterval(smth);
-                        return;
-                    } else {
-                        menu.style.left = timePassed + 'px';
-                    }
-                }, 20);
-                } else {
-                    menu.style.left = 0;
-                    menu.style.transform = 'translate(-100%)';
-                }
-            }
+            menu.classList.toggle('active-menu');
         }
         btnMenu.addEventListener('click', handlerMenu);
         closeBtn.addEventListener('click', handlerMenu);
@@ -87,10 +67,41 @@ window.addEventListener('DOMContentLoaded', function() {
 
     const togglePopUp = () => {
         const popup = document.querySelector('.popup'),
+            popupContent = document.querySelector('.popup-content'),
             popupBtn = document.querySelectorAll('.popup-btn'),
             popUpClose = document.querySelector('.popup-close');
-        popupBtn.forEach((elem) => elem.addEventListener('click', () => popup.style.display = 'block'));
         popUpClose.addEventListener('click', () => popup.style.display = 'none');
-    };
+        popupBtn.forEach((elem) => elem.addEventListener('click', () => {
+            popup.style.display = 'block';
+            if (screen.width >= 768) {
+                const way = (document.body.offsetWidth) / 2;
+                popupContent.style.left = 0;
+                const start = Date.now();
+                const smth = setInterval(() => {
+                const timePassed = Date.now() - start;
+                if (timePassed >= way) {
+                        clearInterval(smth);
+                        return;
+                    } else {
+                        popupContent.style.left = timePassed + 'px';
+                    }
+                }, 20);
+            } else {
+                popupContent.style.margin = 'auto';
+            }
+        }))
+    }
+
     togglePopUp();
 });
+
+
+
+
+// if(!menu.style.transform || menu.style.transform === 'translate(-100%)') {
+//     menu.style.transform = 'translate(0)';
+    
+// } else {
+//     menu.style.left = 0;
+//     menu.style.transform = 'translate(-100%)';
+// }
